@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>soon 💻❤️</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      font-family: "Segoe UI", sans-serif;
+      color: #f1f5f9;
+    }
+    .chat-box {
+      width: 420px;
+      background: #1e293b;
+      padding: 16px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+    }
+    h1 {
+      margin-bottom: 12px;
+      color: #38bdf8;
+      text-align: center;
+    }
+    .messages {
+      flex: 1;
+      background: rgba(255,255,255,0.05);
+      padding: 16px;
+      border-radius: 12px;
+      overflow-y: auto;
+      margin-bottom: 12px;
+      max-height: 300px;
+    }
+    .msg {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 12px;
+      margin: 6px 0;
+      max-width: 80%;
+      animation: fadeIn 0.4s ease;
+      word-wrap: break-word;
+    }
+    .me {
+      background: #38bdf8;
+      color: #0f172a;
+      align-self: flex-end;
+    }
+    .bot {
+      background: #0ea5e9;
+      color: #0f172a;
+      align-self: flex-start;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .input-area {
+      display: flex;
+      gap: 8px;
+    }
+    input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+    }
+    button {
+      padding: 10px 14px;
+      border: none;
+      border-radius: 8px;
+      background: #38bdf8;
+      color: #0f172a;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button:hover {
+      transform: scale(1.05);
+      background: #0ea5e9;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-box">
+    <h2> kirim pesan disini ya sayang 💻❤️</h2>
+    <div class="messages" id="messages"></div>
+    <div class="input-area">
+      <input type="text" id="userInput" placeholder="Ketik pesanmu...">
+      <button onclick="kirim()">Kirim</button>
+    </div>
+  </div>
+
+  <script>
+    const botPesan = [
+      "Aku nggak perlu algoritma, karena hati ini udah auto ke kamu.",
+      "Commit ku cuma satu: tetap sama kamu.",
+      "Kalau hidup ini program, kamu itu variabel global yang selalu ada.",
+      "Aku mungkin error, tapi niat jagain kamu selalu true.",
+      "Kamu itu satu-satunya dependency yang nggak akan pernah aku hapus.",
+      "Kamu tuh kayak CSS, bikin hidupku jadi lebih indah dan berwarna.",
+      "Kalau aku jadi array, kamu pasti index ke-0, soalnya selalu jadi yang pertama di hati.",
+      "Kamu itu kayak syntax di dalam kodenya aku, kalau hilang satu aja, hidupku langsung error.",
+      "cintaku ke kamu itu kaya loop, ga akan pernah berhenti.",
+      "kamu itu kaya function, selalu ada di setiap proses hariku.",
+      "kamu itu kaya variable, selalu aku simpan di hati.",
+      "Cintaku ke kamu kayak server uptime, nggak pernah down meskipun lagi banyak beban.",
+      "kamu itu kaya framework, bikin hari mas jadi lebih terstruktur.",
+      "adek itu kaya library, selalu ada buat bantu mas.",
+      "you're my definition of perfect.",
+      "fuck, i'm so in love with you.",
+      "sun is rising rain is falling when i see u smilling, damn bro, i'm falling."
+    ];
+
+    let botIndex = 0;
+
+    function tambahPesan(teks, kelas) {
+      const div = document.createElement("div");
+      div.className = `msg ${kelas}`;
+      div.textContent = teks;
+      document.getElementById("messages").appendChild(div);
+      document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
+    }
+
+    function kirim() {
+      const input = document.getElementById("userInput");
+      const teks = input.value.trim();
+      if (teks === "") return;
+      
+      tambahPesan(teks, "me");
+      input.value = "";
+
+      // balasan otomatis
+      setTimeout(() => {
+        if (botIndex < botPesan.length) {
+          tambahPesan(botPesan[botIndex], "bot");
+          botIndex++;
+        } else {
+          tambahPesan("Pesan bucin sudah habis, tapi perasaan nggak akan pernah habis 😌", "bot");
+        }
+      }, 700);
+    }
+  </script>
+</body>
+</html>
